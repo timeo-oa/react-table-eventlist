@@ -4,7 +4,7 @@ import { DefaultColumnFilter, SelectColumnFilter, SliderColumnFilter, NumberRang
 // A great library for fuzzy filtering/sorting items
 import { matchSorter } from 'match-sorter';
 import { motion, AnimatePresence } from 'framer-motion';
-import React from 'react';
+import React, {useMemo} from 'react';
 
 function App() {
 
@@ -22,7 +22,7 @@ function App() {
   fuzzyTextFilterFn.autoRemove = val => !val
 
 
-  const defaultColumn = React.useMemo(
+  const defaultColumn = useMemo(
     () => ({
       // Let's set up our default Filter UI
       Filter: DefaultColumnFilter,
@@ -30,7 +30,7 @@ function App() {
     []
   )
 
-  const filterTypes = React.useMemo(
+  const filterTypes = useMemo(
     () => ({
       fuzzyText: fuzzyTextFilterFn,
 
@@ -46,10 +46,10 @@ function App() {
     }), []
   )
 
-  const data = React.useMemo(
+  const data = useMemo(
     () => rowDef, []
   )
-  const Columns = React.useMemo(
+  const Columns = useMemo(
     () => [
 
       {
@@ -102,7 +102,7 @@ function App() {
     useFilters,
     useSortBy
   )
-  const spring = React.useMemo(
+  const spring = useMemo(
     () => ({
       type: 'spring',
       damping: 50,
