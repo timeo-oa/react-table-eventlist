@@ -75,6 +75,7 @@ export function SliderColumnFilter({
 
   return (
     <>
+    <rux-slider>
       <input
         type="range"
         min={min}
@@ -84,6 +85,7 @@ export function SliderColumnFilter({
           setFilter(parseInt(e.target.value, 10))
         }}
       />
+      </rux-slider>
       <button onClick={() => setFilter(undefined)}>Off</button>
     </>
   )
