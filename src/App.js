@@ -3,9 +3,8 @@ import createEvents from './createEvents';
 import { DefaultColumnFilter, SelectColumnFilter, SliderColumnFilter, NumberRangeColumnFilter } from './Filter';
 // A great library for fuzzy filtering/sorting items
 import { matchSorter } from 'match-sorter';
-import { motion, AnimatePresence } from 'framer-motion';
 import React, {useMemo} from 'react';
-
+import './App.scss'
 function App() {
 
   //First, let's create the the array of objects to be displayed. 
@@ -102,14 +101,6 @@ function App() {
     useFilters,
     useSortBy
   )
-  const spring = useMemo(
-    () => ({
-      type: 'spring',
-      damping: 50,
-      stiffness: 100,
-    }),
-    []
-  )
 
 
   const {
@@ -123,9 +114,11 @@ function App() {
   // console.log('Rows are', Rows)
 
   return (
-
+    <div class="event-list">
+<section class="event-list-table bg-secondary-dark-3">
+ 
     <rux-table {...getTableProps()}>
-
+    <div class="event-list-table__header-row bg-secondary-dark-3 f5  tableHeaderColor">
       <rux-table-header>
 
         {headerGroups.map(headerGroup => (
@@ -133,17 +126,19 @@ function App() {
           <rux-table-header-row {...headerGroup.getHeaderGroupProps()}>
 
             {headerGroup.headers.map(column => (
-
-              <motion.th
-                {...column.getHeaderProps({
-                  layoutTransition: spring,
+             
+              <th
+                {...column.getHeaderProps(
+                  
+                  {
                   style: {
-                    minWidth: column.minWidth,
+                    minWidth: 180,
                   },
-                })}
+                }
+                )}
               >
                 <rux-table-header-cell {...column.getSortByToggleProps()}>
-                  {column.render('Header')}
+                  <span class="addMargin">{column.render('Header')}</span>
                   <span>
                     {/* Need to find a more Astro themed up & Down bar */}
                     {column.isSorted
@@ -152,10 +147,11 @@ function App() {
                         : ' 🔼'
                       : ''}
                   </span>
+              
+                <div class="addMargin">{column.canFilter ? column.render('Filter') : null}</div>
                 </rux-table-header-cell>
-                <div>{column.canFilter ? column.render('Filter') : null}</div>
-              </motion.th>
-
+              </th>
+            
             ))}
 
           </rux-table-header-row>
@@ -163,29 +159,31 @@ function App() {
         ))}
 
       </rux-table-header>
-
-      <rux-table-body {...getTableBodyProps()}>
-        <AnimatePresence>
+      </div>
+     <div class="event-list-table__body f6 tableBody">
+      <rux-table-body  {...getTableBodyProps()}>
+      
           {rows.map(row => {
             //This function is responsible for lazily preparing a row for rendering. Any row that you intend to render in your table needs to be passed to this function before every render.
             prepareRow(row)
 
             return (
-
-              <motion.tr {...row.getRowProps({
-                layoutTransition: spring,
-                exit: { opacity: 0, maxHeight: 0 },
-              })}>
+              <div class="
+              event-list-table__item 
+              f7 bb b--black 
+              bg-tertiary
+              event tableRowColor tableBody ">
+              <tr {...row.getRowProps()}>
                 <rux-table-row >
                   {row.cells.map(cell => {
 
                     return (
 
-                      <motion.td
+                      <td
                         {...cell.getCellProps({
-                          layoutTransition: spring,
                           style: {
                          minWidth: 180,
+                        
                   },
                         })}
                       >
@@ -193,21 +191,23 @@ function App() {
                           {cell.render('Cell')}
                         </rux-table-cell>
 
-                      </motion.td>
+                      </td>
 
                     )
                   })}
                 </rux-table-row>
                 
-              </motion.tr>
-                         
+              </tr>
+                         </div>
           )})}
-        </AnimatePresence>
 
       </rux-table-body>
+      </div>
 
     </rux-table>
-
+    
+    </section>
+    </div>
   )
 
 }
