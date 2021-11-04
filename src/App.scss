@@ -143,10 +143,10 @@
       }
   
       &--new > span {
-        background-color: var(--critical);
+        background-color: #FF3838;
       }
       &--monitor > span {
-        background-color: var(--caution);
+        background-color: #FCE83A;
       }
       &--critical > span {
         background-color: var(--critical);
@@ -171,4 +171,15 @@
 
   .tableBody {
       box-shadow: 5px 5px 5px 5px black;
+  }
+
+  .eventCritical {
+    background-color: #FF3838;
+    color:black;
+    border-radius: 10%;
+    padding: 5px;
+  }
+
+  .eventMonitor {
+    background-color: yellow;
   }

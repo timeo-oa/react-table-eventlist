@@ -60,6 +60,9 @@ function App() {
       {
         Header: 'Status',
         accessor: 'status',
+        Cell: s => (
+          <span className={s.value === 'New' ? "eventCritical" : "eventMonitor"}>New</span>
+        ),
         Filter: SelectColumnFilter,
         filter: 'includes',
         minWidth: 150,
