@@ -1,9 +1,11 @@
+// import './wdyr.js'
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import '@astrouxds/astro-web-components/dist/astro-web-components/astro-web-components.css'
 
+// App.whyDidYouRender = true;
 ReactDOM.render(
   <React.StrictMode>
     <App/>

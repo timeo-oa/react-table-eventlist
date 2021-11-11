@@ -26,7 +26,7 @@ export default function createEvents() {
     const event = {};
     //Generate unique track id
     event['track-id'] = new Random().integer(1000, 9999);
-    event['status'] = 'New';
+    event['status'] = new Random().bool() ? 'New' : 'Monitor'
     event['hits'] = new Random().integer(100,999);
     event['first-detect'] = `${new Random().integer(0,60)}:${new Random().integer(0,60)}:${new Random().integer(0,60)}`;
     event['duration'] = `${new Random().integer(0,15)}:${new Random().integer(0,60)}`;

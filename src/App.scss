@@ -17,7 +17,7 @@
       flex-direction: column;
       width: 100%;
       align-items: center;
-      max-height: 300px;
+      max-height: 800px;
       overflow-y: scroll;
     }
   
@@ -182,4 +182,7 @@
 
   .eventMonitor {
     background-color: yellow;
+    color:black;
+    border-radius: 10%;
+    padding: 5px;
   }
